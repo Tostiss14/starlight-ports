@@ -1,6 +1,6 @@
 - type: entity
   id: BaseWeaponBattery
-  parent: BaseItem
+  parent: [BaseItem, BaseLustGunHeat] # Lust edit: наследуем компонент нагрева из _Lust
   abstract: true
   components:
   - type: Sprite

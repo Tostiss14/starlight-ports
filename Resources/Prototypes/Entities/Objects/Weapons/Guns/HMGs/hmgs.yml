@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponHeavyMachineGun
-  parent: BaseItem
+  parent: [BaseItem, BaseLustGunHeat] # Lust edit: наследуем компонент нагрева из _Lust
   id: BaseWeaponHeavyMachineGun
   description: Spray and pray.
   abstract: true

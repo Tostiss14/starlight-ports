@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponShotgun
-  parent: [BaseItem, GunMedium, BaseGunShotgunSound] # Sunrise edit - shotgun handling sounds
+  parent: [BaseItem, GunMedium, BaseGunShotgunSound, BaseLustGunHeat] # Sunrise edit - shotgun handling sounds; Lust edit: наследуем компонент нагрева из _Lust
   id: BaseWeaponShotgunAny
   description: A rooty tooty point and shooty.
   abstract: true

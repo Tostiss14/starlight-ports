@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponLauncher
-  parent: [ BaseItem, BaseGunWieldable ]
+  parent: [ BaseItem, BaseGunWieldable, BaseLustGunHeat ] # Lust edit: наследуем компонент нагрева из _Lust
   id: BaseWeaponLauncher
   description: A rooty tooty point and shooty.
   abstract: true
