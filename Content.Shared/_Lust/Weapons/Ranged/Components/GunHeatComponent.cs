@@ -31,10 +31,10 @@ public sealed partial class GunHeatComponent : Component
     [DataField]
     public float MeltTemperature = Atmospherics.T20C + 360f;
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public float Temperature = Atmospherics.T20C;
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public bool Jammed;
 
     [AutoNetworkedField]
@@ -49,5 +49,6 @@ public sealed partial class GunHeatComponent : Component
     [DataField]
     public TimeSpan PopupCooldown = TimeSpan.FromSeconds(1);
 
+    [AutoNetworkedField]
     public TimeSpan NextPopupTime;
 }

@@ -258,6 +258,9 @@ public sealed partial class GunSystem : SharedGunSystem
                         MuzzleFlash(gunUid, cartridge, worldAngle, user);
                         Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                         Recoil(user, direction, gun.CameraRecoilScalarModified);
+                        // Lust added start - выносим звук выброса гильзы в fork partial
+                        PlayLustCartridgeEjectSound(gunUid, ent!.Value, cartridge, gun, user);
+                        // Lust added end
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
@@ -267,11 +270,6 @@ public sealed partial class GunSystem : SharedGunSystem
                         userImpulse = false;
                         Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
                     }
-
-                    // Lust added start - предсказываем звук выброса гильзы
-                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Pump)
-                        Audio.PlayPredicted(cartridge.EjectSound, gunUid, user);
-                    // Lust added end
 
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);

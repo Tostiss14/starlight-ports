@@ -7,24 +7,21 @@ namespace Content.Client._Lust.Weapons.Ranged;
 
 public sealed class GunHeatStatusControl : Control
 {
+    private readonly GunHeatComponent _heat;
+
     private static readonly Color Background = Color.Black.WithAlpha(0.45f);
     private static readonly Color Cool = Color.FromHex("#e0b050");
     private static readonly Color Hot = Color.FromHex("#ff3b1f");
     private static readonly Color JamMarker = Color.FromHex("#ffd34d");
     private static readonly Color CriticalMarker = Color.FromHex("#ff4d4d");
 
-    private float _fill;
-    private float _jam;
-
-    public GunHeatStatusControl()
+    public GunHeatStatusControl(GunHeatComponent heat)
     {
+        _heat = heat;
         MinHeight = 7;
         HorizontalExpand = true;
         Margin = new Thickness(0, 2, 0, 0);
     }
-
-    public void Update(GunHeatComponent heat)
-        => (_fill, _jam) = GetFractions(heat);
 
     public static (float Fill, float Jam) GetFractions(GunHeatComponent heat)
     {
@@ -53,6 +50,7 @@ public sealed class GunHeatStatusControl : Control
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
-        DrawGauge(handle, new UIBox2(0, 0, PixelWidth, PixelHeight), _fill, _jam, MathF.Max(1f, UIScale));
+        var (fill, jam) = GetFractions(_heat);
+        DrawGauge(handle, new UIBox2(0, 0, PixelWidth, PixelHeight), fill, jam, MathF.Max(1f, UIScale));
     }
 }

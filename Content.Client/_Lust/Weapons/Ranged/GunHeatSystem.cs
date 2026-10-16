@@ -16,7 +16,6 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
 
-    private readonly Dictionary<EntityUid, GunHeatStatusControl> _statusControls = new();
     private readonly Dictionary<EntityUid, HeldGlow> _held = new();
     private static readonly Color HeatGlowColor = Color.FromHex("#ff3b1f");
 
@@ -31,23 +30,16 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
 
     private void OnItemStatus(Entity<GunHeatComponent> ent, ref ItemStatusCollectMessage args)
     {
-        var control = new GunHeatStatusControl();
-        control.Update(ent.Comp);
-        _statusControls[ent] = control;
-        args.Controls.Add(control);
+        args.Controls.Add(new GunHeatStatusControl(ent.Comp));
     }
 
     private void OnShutdown(Entity<GunHeatComponent> ent, ref ComponentShutdown args)
     {
-        _statusControls.Remove(ent);
         ClearHeldGlow(ent);
     }
 
     private void OnHandleState(Entity<GunHeatComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (_statusControls.TryGetValue(ent, out var control))
-            control.Update(ent.Comp);
-
         UpdateHeldGlow(ent, SharedGunHeatSystem.GetGlow(ent.Comp, ent.Comp.Temperature));
     }
 
