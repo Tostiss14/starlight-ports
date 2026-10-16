@@ -22,6 +22,9 @@
     fireRate: 2
     useKey: true
     selectedMode: SemiAuto
+  # Lust added start - нагрев применяется к огнестрельным шаблонам
+  - type: GunHeat
+  # Lust added end
   - type: MeleeWeapon
     wideAnimationRotation: 0
     range: 1
@@ -56,6 +59,9 @@
     fireRate: 2
     useKey: true
     selectedMode: SemiAuto
+  # Lust added start - нагрев применяется к огнестрельным шаблонам
+  - type: GunHeat
+  # Lust added end
   - type: MeleeWeapon
     angle: 60
     range: 1.5
@@ -90,6 +96,9 @@
     fireRate: 2
     useKey: true
     selectedMode: SemiAuto
+  # Lust added start - нагрев применяется к огнестрельным шаблонам
+  - type: GunHeat
+  # Lust added end
   - type: MeleeWeapon
     angle: 60
     range: 1.5
@@ -124,6 +133,9 @@
     fireRate: 2
     useKey: true
     selectedMode: SemiAuto
+  # Lust added start - нагрев применяется к огнестрельным шаблонам
+  - type: GunHeat
+  # Lust added end
   - type: MeleeWeapon
     angle: 60
     range: 1.5

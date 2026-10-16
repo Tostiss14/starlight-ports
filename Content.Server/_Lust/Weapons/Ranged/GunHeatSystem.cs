@@ -5,7 +5,6 @@ using Content.Shared._Lust.Weapons.Ranged.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Temperature;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Weapons.Ranged.Components;
 
 namespace Content.Server._Lust.Weapons.Ranged;
 
@@ -24,16 +23,10 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<GunComponent, ComponentInit>(OnGunInit);
         SubscribeLocalEvent<GunHeatComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<GunHeatComponent, ModifyChangedTemperatureEvent>(OnModifyTemperature);
         SubscribeLocalEvent<GunHeatComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<GunHeatComponent, OnTemperatureChangeEvent>(OnTemperatureChange);
-    }
-
-    private void OnGunInit(Entity<GunComponent> ent, ref ComponentInit args)
-    {
-        EnsureComp<GunHeatComponent>(ent);
     }
 
     private void OnMapInit(Entity<GunHeatComponent> ent, ref MapInitEvent args)

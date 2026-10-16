@@ -27,6 +27,9 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  # Lust added start - нагрев применяется только к прототипам огнестрельного оружия
+  - type: GunHeat
+  # Lust added end
   # Sunrise start
   - type: EmitSoundOnPickup
     sound:

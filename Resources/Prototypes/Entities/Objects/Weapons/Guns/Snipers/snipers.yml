@@ -26,6 +26,9 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  # Lust added start - нагрев применяется только к прототипам огнестрельного оружия
+  - type: GunHeat
+  # Lust added end
   - type: BallisticAmmoProvider
     capacity: 5 # Sunrise-Edit
     proto: CartridgeHeavyRifleRFMJ
