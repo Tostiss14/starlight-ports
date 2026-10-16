@@ -7,7 +7,7 @@ using Robust.Shared.Configuration;
 
 namespace Content.Client._Lust.Combat;
 
-public sealed class GunCombatIndicatorsSystem : EntitySystem
+public sealed partial class GunCombatIndicatorsSystem : EntitySystem
 {
     [Dependency] private IOverlayManager _overlayManager = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
