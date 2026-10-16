@@ -268,6 +268,11 @@ public sealed partial class GunSystem : SharedGunSystem
                         Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
                     }
 
+                    // Lust added start - предсказываем звук выброса гильзы
+                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Pump)
+                        Audio.PlayPredicted(cartridge.EjectSound, gunUid, user);
+                    // Lust added end
+
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
 
