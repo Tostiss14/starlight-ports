@@ -1,7 +1,5 @@
 using System.Numerics;
-using Content.Client.CombatMode;
 using Content.Client.Hands.Systems;
-using Content.Shared._Lust.CCVar;
 using Content.Shared.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -23,9 +21,6 @@ namespace Content.Client.Hands
         [Dependency] private IEntityManager _entMan = default!;
 
         private HandsSystem? _hands;
-        // Lust added start - используем режим отображения предмета из настроек
-        private CombatModeSystem? _combatMode;
-        // Lust added end
         private readonly IRenderTexture _renderBackbuffer;
 
         public override OverlaySpace Space => OverlaySpace.ScreenSpace;
@@ -55,33 +50,12 @@ namespace Content.Client.Hands
 
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            // Lust added start - режим может зависеть от боевого состояния игрока
-            if (!ShouldShowForMode())
+            // Lust edit - выбор режима отображения реализован в fork partial
+            if (!ShouldShowHeldItem())
                 return false;
-            // Lust added end
 
             return base.BeforeDraw(in args);
         }
-
-        // Lust added start
-        private bool ShouldShowForMode()
-        {
-            var mode = (HeldItemShowMode) _cfg.GetCVar(CCVars.HudHeldItemShowMode);
-            return mode switch
-            {
-                HeldItemShowMode.Always => true,
-                HeldItemShowMode.CombatModeOnly => IsInCombatMode(),
-                HeldItemShowMode.NonCombatModeOnly => !IsInCombatMode(),
-                _ => false,
-            };
-        }
-
-        private bool IsInCombatMode()
-        {
-            _combatMode ??= _entMan.System<CombatModeSystem>();
-            return _combatMode.IsInCombatMode();
-        }
-        // Lust added end
 
         protected override void Draw(in OverlayDrawArgs args)
         {
