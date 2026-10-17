@@ -29,6 +29,10 @@
     temperatureMultiplier: 2
   # Lust edit: применяем термит к конструкциям при контакте
   reactiveEffects:
+    Flammable:
+      methods: [ Touch ]
+      effects:
+      - !type:Flammable
     Dissolvable:
       methods: [ Touch ]
       effects:
